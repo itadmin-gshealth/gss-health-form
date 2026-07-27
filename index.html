@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Shepherd School Student Health Monitoring Form</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f2f5f9;
+    color:#333;
+}
+
+/* ===========================
+   Main Container
+=========================== */
+
+.container{
+    max-width:950px;
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.12);
+}
+
+/* ===========================
+   Headings
+=========================== */
+
+h1{
+    text-align:center;
+    color:#1565C0;
+    margin-bottom:10px;
+}
+
+h2,h3{
+    color:#1565C0;
+    border-bottom:1px solid #ddd;
+    padding-bottom:6px;
+    margin-top:35px;
+}
+
+/* ===========================
+   Labels
+=========================== */
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:4px;
+    font-weight:bold;
+}
+
+/* ===========================
+   Text Inputs
+=========================== */
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea{
+
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+    background:#fff;
+
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* ===========================
+   Two Column Layout
+=========================== */
+
+.row{
+    display:flex;
+    gap:20px;
+}
+
+.col{
+    flex:1;
+}
+
+/* ===========================
+   Radio Buttons
+=========================== */
+
+.radio-group{
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:8px;
+
+}
+
+.radio-group label{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:normal;
+    margin:0;
+    cursor:pointer;
+
+}
+
+.radio-group input[type="radio"]{
+
+    width:auto;
+    margin:0;
+    padding:0;
+    transform:scale(1.1);
+
+}
+
+/* ===========================
+   Checkbox Groups
+=========================== */
+
+.checkbox-group{
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-top:8px;
+
+}
+
+.checkbox-group label{
+
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-weight:normal;
+    cursor:pointer;
+    margin:0;
+
+}
+
+.checkbox-group input[type="checkbox"]{
+
+    width:auto;
+    margin-top:3px;
+    transform:scale(1.1);
+    flex-shrink:0;
+
+}
+
+/* ===========================
+   Illness Cards
+=========================== */
+
+.illness-grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    margin-top:20px;
+
+}
+
+.illness-group{
+
+    border:1px solid #ddd;
+    border-radius:8px;
+    background:#fafafa;
+    padding:15px;
+
+}
+
+.illness-group h4{
+
+    margin-top:0;
+    margin-bottom:15px;
+    color:#0056b3;
+
+}
+
+.illness-group label{
+
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-weight:normal;
+    cursor:pointer;
+    margin-bottom:10px;
+
+}
+
+.illness-group input[type="checkbox"]{
+
+    width:auto;
+    margin-top:3px;
+    flex-shrink:0;
+    transform:scale(1.15);
+
+}
+
+.illness-group span{
+
+    flex:1;
+    line-height:1.35;
+
+}
+
+/* ===========================
+   Signature
+=========================== */
+
+.signature-container{
+
+    text-align:center;
+    margin:30px auto;
+
+}
+
+#signature{
+    width:100%;
+    max-width:550px;
+    height:180px;
+    border:2px solid #999;
+    border-radius:5px;
+    background:#fff;
+    display:block;
+    margin:auto;
+    touch-action:none;
+    -webkit-user-select:none;
+    user-select:none;
+    cursor:crosshair;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+button{
+
+    width:100%;
+    padding:14px;
+    margin-top:25px;
+    border:none;
+    border-radius:6px;
+    background:#1565C0;
+    color:#fff;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#0D47A1;
+
+}
+
+/* ===========================
+   Tables
+=========================== */
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th,td{
+
+    padding:10px;
+    border:1px solid #ddd;
+
+}
+
+th{
+
+    background:#1565C0;
+    color:white;
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width:768px){
+
+.container{
+
+    padding:18px;
+
+}
+
+.row{
+
+    flex-direction:column;
+
+}
+
+.illness-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+button{
+
+    font-size:16px;
+
+}
+
+#signature{
+
+    height:160px;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>GSS Student Health Monitoring Form</h1>
+
+<form id="healthForm">
+
+<h3>Community Health Worker</h3>
+
+<div class="row">
+
+<div class="col">
+
+<label>CHW Name</label>
+<input type="text" name="CHW_Name" required>
+
+</div>
+
+<div class="col">
+
+<label>Entry Date</label>
+<input type="date" name="Visit_Date" required>
+
+</div>
+
+</div>
+
+<h3>School Information</h3>
+
+<label>School Name (GSS)</label>
+
+<select name="GSS_Name">
+
+<option>	GSS Chitoor	</option>
+<option>	GSS Laxmipuram	</option>
+<option>	GSS Uddehal	</option>
+<option>	GSS Pellakur	</option>
+<option>	GSS Gaya	</option>
+<option>	GSS Katihar	</option>
+<option>	GSS Madhubani	</option>
+<option>	GSS Kotba	</option>
+<option>	GSS Nawapara	</option>
+<option>	GSS Adhoi	</option>
+<option>	GSS Antarjal	</option>
+<option>	GSS Linch	</option>
+<option>	GSS Kalka	</option>
+<option>	GSS Siyankel	</option>
+<option>	GSS Dumka	</option>
+<option>	GSS Bijapur	</option>
+<option>	GSS Bangalore	</option>
+<option>	GSS Byrakur	</option>
+<option>	GSS Rakshi	</option>
+<option>	GSS KGF	</option>
+<option>	GSS Mardala	</option>
+<option>	GSS Mysore	</option>
+<option>	GSS Raichur	</option>
+<option>	GSS Shimoga	</option>
+<option>	GSS Yelburga	</option>
+<option>	GSS Kadith	</option>
+<option>	GSS Mankhurd	</option>
+<option>	GSS Nagpur	</option>
+<option>	GSS Solapur	</option>
+<option>	GSS Betul	</option>
+<option>	GSS Sagar	</option>
+<option>	GSS Daringbodi	</option>
+<option>	GSS Paralakhemundi	</option>
+<option>	GSS Bhograi	</option>
+<option>	GSS Nuapada	</option>
+<option>	GSS Abohar	</option>
+<option>	GSS Faridkot	</option>
+<option>	GSS Ferozepur	</option>
+<option>	GSS Hezamal	</option>
+<option>	GSS Kewadia	</option>
+<option>	GSS Kushalgarh	</option>
+<option>	GSS Balanagar	</option>
+<option>	GSS Bondugula	</option>
+<option>	GSS Janagaon	</option>
+<option>	GSS Jeedimetla	</option>
+<option>	GSS Kaukuntla	</option>
+<option>	GSS Kollur	</option>
+<option>	GSS Kalvasrirampu	</option>
+<option>	GSS Nandigaon	</option>
+<option>	GSS Papaiahpet	</option>
+<option>	GSS Rasoolpura	</option>
+<option>	GSS Rasoolpura-S	</option>
+<option>	GSS Thimmajipet	</option>
+<option>	GSS Uddamari	</option>
+<option>	GSS AP Puram	</option>
+<option>	GSS Kiliyanur	</option>
+<option>	GSS Kalaiyarkovil	</option>
+<option>	GSS Sivakasi	</option>
+<option>	GSS Theni	</option>
+<option>	GSS Usilampatti	</option>
+<option>	GSS Vellankanni	</option>
+<option>	GSS Vilianoor	</option>
+<option>	GSS Karaikal	</option>
+<option>	GSS Agasand	</option>
+<option>	GSS Moth	</option>
+<option>	GSS Gangoh	</option>
+<option>	GSS Hardoi	</option>
+<option>	GSS Nehtaur	</option>
+<option>	GSS Sidhauli	</option>
+<option>	GSS Ambedkar Nagar	</option>
+<option>	GSS Lalganj	</option>
+<option>	GSS Ram Nagar	</option>
+<option>	GSS Gorakhpur	</option>
+<option>	GSS Bhastara	</option>
+<option>	GSS Jalpaiguri	</option>
+<option>	GSS Thakurani Chowk	</option>
+<option>	GSS Basanti Colony Kolkata	</option>
+
+
+</select>
+
+<div class="row">
+
+<div class="col">
+
+<label>Student ID</label>
+<input type="text" name="Student_Id">
+
+</div>
+
+<div class="col">
+
+<label>Student Name</label>
+<input type="text" name="Student_Name">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>Grade</label>
+
+<select name="Grade">
+
+<option>LKG</option>
+<option>UKG</option>
+<option>Grade 1</option>
+<option>Grade 2</option>
+<option>Grade 3</option>
+<option>Grade 4</option>
+<option>Grade 5</option>
+<option>Grade 6</option>
+<option>Grade 7</option>
+<option>Grade 8</option>
+<option>Grade 9</option>
+<option>Grade 10</option>
+<option>Grade 11</option>
+<option>Grade 12</option>
+
+</select>
+
+</div>
+
+<div class="col">
+
+<label>Section</label>
+
+<input type="text" name="Section">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col">
+
+<label>Gender</label>
+
+<div style="display:flex; align-items:center; gap:20px;">
+
+    <label style="display:flex; align-items:center; gap:5px;">
+        <input type="radio" name="Gender" value="Male">
+        Male
+    </label>
+
+    <label style="display:flex; align-items:center; gap:5px;">
+        <input type="radio" name="Gender" value="Female">
+        Female
+    </label>
+
+</div>
+
+</div>
+
+<div class="col">
+
+<label>DOB</label>
+
+<input type="date" name="DOB" required>
+
+</div>
+
+</div>
+
+<h3>Health Information</h3>
+
+<p><b>Select all chronic illnesses diagnosed in the student.</b></p>
+
+<div class="illness-grid">
+
+<div class="illness-group">
+
+<h4>Respiratory</h4>
+
+<label><input type="checkbox" name="illness[]" value="Asthma"><span>Asthma</span></label>
+
+<label><input type="checkbox" name="illness[]" value="Chronic Bronchitis"><span>Chronic Bronchitis</span></label>
+
+<label><input type="checkbox" name="illness[]" value="Cystic Fibrosis"><span>Cystic Fibrosis</span></label>
+
+<label><input type="checkbox" name="illness[]" value="Tuberculosis"><span>Tuberculosis</span></label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Neurological</h4>
+
+<label><input type="checkbox" name="illness[]" value="Epilepsy">Epilepsy</label>
+
+<label><input type="checkbox" name="illness[]" value="Cerebral Palsy">Cerebral Palsy</label>
+
+<label><input type="checkbox" name="illness[]" value="Muscular Dystrophy">Muscular Dystrophy</label>
+
+<label><input type="checkbox" name="illness[]" value="Migraine">Migraine</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Endocrine</h4>
+
+<label><input type="checkbox" name="illness[]" value="Type 1 Diabetes">Type 1 Diabetes</label>
+
+<label><input type="checkbox" name="illness[]" value="Type 2 Diabetes">Type 2 Diabetes</label>
+
+<label><input type="checkbox" name="illness[]" value="Thyroid Disorder">Thyroid Disorder</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Cardiac</h4>
+
+<label><input type="checkbox" name="illness[]" value="Congenital Heart Disease">Congenital Heart Disease</label>
+
+<label><input type="checkbox" name="illness[]" value="Rheumatic Heart Disease">Rheumatic Heart Disease</label>
+
+<label><input type="checkbox" name="illness[]" value="Hypertension">Hypertension</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Blood Disorders</h4>
+
+<label><input type="checkbox" name="illness[]" value="Sickle Cell Disease">Sickle Cell Disease</label>
+
+<label><input type="checkbox" name="illness[]" value="Thalassemia">Thalassemia</label>
+
+<label><input type="checkbox" name="illness[]" value="Hemophilia">Hemophilia</label>
+
+<label><input type="checkbox" name="illness[]" value="Chronic Anemia">Chronic Anemia</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Allergies</h4>
+
+<label><input type="checkbox" name="illness[]" value="Food Allergy">Food Allergy</label>
+
+<label><input type="checkbox" name="illness[]" value="Drug Allergy">Drug Allergy</label>
+
+<label><input type="checkbox" name="illness[]" value="Insect Allergy">Insect Allergy</label>
+
+<label><input type="checkbox" name="illness[]" value="Anaphylaxis">Anaphylaxis</label>
+
+<label><input type="checkbox" name="illness[]" value="Eczema">Eczema</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Vision</h4>
+
+<label><input type="checkbox" name="illness[]" value="Low Vision">Low Vision</label>
+
+<label><input type="checkbox" name="illness[]" value="Blindness">Blindness</label>
+
+<label><input type="checkbox" name="illness[]" value="Glaucoma">Glaucoma</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Hearing</h4>
+
+<label><input type="checkbox" name="illness[]" value="Hearing Loss">Hearing Loss</label>
+
+<label><input type="checkbox" name="illness[]" value="Deafness">Deafness</label>
+
+<label><input type="checkbox" name="illness[]" value="Cochlear Implant">Cochlear Implant</label>
+
+</div>
+
+<div class="illness-group">
+
+<h4>Developmental / Behavioural</h4>
+
+<label><input type="checkbox" name="illness[]" value="Autism Spectrum Disorder">Autism Spectrum Disorder</label>
+
+<label><input type="checkbox" name="illness[]" value="ADHD">ADHD</label>
+
+<label><input type="checkbox" name="illness[]" value="Intellectual Disability">Intellectual Disability</label>
+
+<label><input type="checkbox" name="illness[]" value="Anxiety Disorder">Anxiety Disorder</label>
+
+<label><input type="checkbox" name="illness[]" value="Depression">Depression</label>
+
+</div>
+
+</div>
+<br>
+
+<label>Other Condition</label>
+
+<input type="text" name="Other_Condition">
+
+<label>Is the condition properly diagnosed by the doctor ?</label>
+
+<div class="radio-group">
+
+    <label><input type="radio" name="diagnosed" value="Yes, with medical records"> Yes, with medical records</label>
+
+    <label><input type="radio" name="diagnosed" value="Yes, without medical records"> Yes, without medical records</label>
+
+    <label><input type="radio" name="diagnosed" value="No, suspected by parents"> No, suspected by parents</label>
+
+</div>
+<label>Treatment Plan</label>
+
+<select name="Treatment">
+
+<option>Currently Receiving Treatment</option>
+<option>Only attends periodic check-ups</option>
+<option>Diagnosed but not currently receiving treatment</option>
+<option>Never been treated</option>
+
+</select>
+<label>Treatment Support</label>
+
+<select name="Period">
+
+<option>Government Support</option>
+<option>School Accomodations (Support)</option>
+<option>Other NGO Support</option>
+<option>None</option>
+</select>
+
+<label>Does the child require medication or emergency care during school hours?</label>
+<div style="display:flex; align-items:center; gap:20px;">
+
+    <label style="display:flex; align-items:center; gap:5px;">
+        <input type="radio" name="care" value="Yes"> Yes</label>
+
+    <label style="display:flex; align-items:center; gap:5px;">
+       <input type="radio" name="care" value="No"> No</label>
+
+</div>
+
+<label>Still Attending School?</label>
+
+<div style="display:flex; align-items:center; gap:20px;">
+
+<label style="display:flex; align-items:center; gap:5px;"><input type="radio" name="Still_Attending" value="Yes"> Yes</label>
+
+<label style="display:flex; align-items:center; gap:5px;"><input type="radio" name="Still_Attending" value="No"> No</label>
+
+</div>
+
+<label>Attendance Status</label>
+
+<select name="Attendance_Status">
+
+<option>Attends more than 90% of school days</option>
+<option>75–90%</option>
+<option>50–75%</option>
+<option>less than 50%</option>
+<option>Dropout</option>
+
+</select>
+
+<label>In case of dropout, mention the reason for not attending school</label>
+
+<input type="text" name="dropout">
+
+<h3>Attachments</h3>
+
+<label>Upload Student Photo</label>
+
+<input type="file" name="Photo" accept="image/*">
+
+<label>Upload Medical Report</label>
+
+<input type="file" name="Report" accept=".pdf,image/*">
+
+<h3>GPS Location</h3>
+
+<button type="button" onclick="getLocation()">Capture GPS Location</button>
+
+<input type="text" id="location" name="GPS_Location" readonly>
+
+<h3>Terms and Conditions, CHW Signature</h3>
+<ul>
+<li>One form per student. Complete and submit a separate form for each student with a chronic health condition. For example, if a school has four affected students, the form should be submitted four times. If a student has multiple health conditions, select all applicable conditions. Wherever the form refers to "the condition," please answer with respect to the most serious condition.</li>
+<li>No cases? Please submit the form anyway. If your school has no students with chronic health conditions, enter "NIL" in the Student Name and Student Code fields, and submit the form. This confirms that the school has been screened and that no cases were identified. Such submissions are just as important as case reports.</li>
+<li>Obtain parental or guardian consent. Before collecting any information, explain to the parent or guardian what data is being collected, why it is needed, and how it will be used. Confirm that they have given their consent.</li> <li>The form includes a declaration to verify that consent has been obtained. Do not submit a student's information without the family's consent.
+Enter the Student Code accurately. Copy the student code exactly as provided. This unique identifier helps ensure that each student is recorded only once and prevents duplicate entries.</li>
+<li>Review, sign, and submit. Before submitting the form, ensure that all required fields have been completed accurately, the information provided is correct, and all necessary conditions and declarations have been fulfilled. Only then should the form be signed and submitted.</li>
+</ul>
+<div style="text-align:center; margin-top:20px; margin-bottom:20px;">
+<canvas id="signature"></canvas>
+</div>
+<button type="button" onclick="clearSignature()">Clear Signature</button>
+
+<h3>Additional Information</h3>
+
+<textarea name="Additional_Info"></textarea>
+
+<button type="submit">
+
+Submit Form
+
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.querySelector("input[name='Visit_Date']").valueAsDate=new Date();
+
+function getLocation() {
+
+    alert("Starting GPS...");
+
+    if (!navigator.geolocation) {
+        alert("Geolocation is NOT supported.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            alert("Success");
+
+            document.getElementById("location").value =
+                position.coords.latitude + "," +
+                position.coords.longitude;
+
+        },
+
+        function(error) {
+
+            alert(
+                "Code = " + error.code +
+                "\nMessage = " + error.message
+            );
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 30000,
+            maximumAge: 0
+        }
+
+    );
+}
+
+const canvas = document.getElementById("signature");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    const ratio = window.devicePixelRatio || 1;
+
+    const data = canvas.toDataURL();
+
+    canvas.width = canvas.offsetWidth * ratio;
+    canvas.height = canvas.offsetHeight * ratio;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(ratio, ratio);
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#000";
+
+    // Restore signature after resize
+    if (data !== "data:,") {
+        const img = new Image();
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        };
+        img.src = data;
+    }
+}
+
+window.addEventListener("load", resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
+
+let drawing = false;
+
+function getPosition(e) {
+    const rect = canvas.getBoundingClientRect();
+
+    if (e.touches && e.touches.length > 0) {
+        return {
+            x: e.touches[0].clientX - rect.left,
+            y: e.touches[0].clientY - rect.top
+        };
+    }
+
+    return {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+    };
+}
+
+function startDrawing(e) {
+    e.preventDefault();
+
+    drawing = true;
+
+    const pos = getPosition(e);
+
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+}
+
+function draw(e) {
+    if (!drawing) return;
+
+    e.preventDefault();
+
+    const pos = getPosition(e);
+
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+}
+
+function stopDrawing() {
+    drawing = false;
+    ctx.beginPath();
+}
+
+// Mouse
+canvas.addEventListener("mousedown", startDrawing);
+canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("mouseleave", stopDrawing);
+
+// Touch
+canvas.addEventListener("touchstart", startDrawing, { passive: false });
+canvas.addEventListener("touchmove", draw, { passive: false });
+canvas.addEventListener("touchend", stopDrawing);
+canvas.addEventListener("touchcancel", stopDrawing);
+
+function clearSignature() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+document.getElementById("healthForm").addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+let formData=new FormData(this);
+
+formData.append("Signature",canvas.toDataURL());
+
+await fetch("https://goodshepherdhealth.app.n8n.cloud/webhook/html-file",{
+
+method:"POST",
+
+body:formData
+
+});
+
+alert("Form Submitted Successfully.");
+
+});
+
+</script>
+
+</body>
+</html>
