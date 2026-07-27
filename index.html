@@ -793,9 +793,7 @@ document.querySelector("input[name='Visit_Date']").valueAsDate=new Date();
 
 function getLocation() {
 
-    alert("Starting GPS...");
-
-    if (!navigator.geolocation) {
+        if (!navigator.geolocation) {
         alert("Geolocation is NOT supported.");
         return;
     }
@@ -803,9 +801,6 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(
 
         function(position) {
-
-            alert("Success");
-
             document.getElementById("location").value =
                 position.coords.latitude + "," +
                 position.coords.longitude;
