@@ -479,7 +479,7 @@ button{
 <label>Grade</label>
 
 <select name="Grade">
-
+<option>Nursery</option>
 <option>LKG</option>
 <option>UKG</option>
 <option>Grade 1</option>
@@ -928,11 +928,11 @@ const photoInput = document.querySelector('input[name="Photo"]');
 const reportInput = document.querySelector('input[name="Report"]');
 
 if (photoInput.files.length > 0) {
-    formData.set("Photo", photoInput.files[0]);
+    formData.append("Photo", photoInput.files[0]);
 }
 
 if (reportInput.files.length > 0) {
-    formData.set("Report", reportInput.files[0]);
+    formData.append("Report", reportInput.files[0]);
 }
 
 await fetch("https://goodshepherdhealth.app.n8n.cloud/webhook-test/html-file",{
