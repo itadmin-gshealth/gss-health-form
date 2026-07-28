@@ -916,25 +916,28 @@ canvas.addEventListener("touchcancel", stopDrawing);
 function clearSignature() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-document.getElementById("healthForm").addEventListener("submit",async function(e){
+document.getElementById("healthForm").addEventListener("submit", async function(e) {
 
-e.preventDefault();
+    e.preventDefault();
 
-let formData=new FormData(this);
+    const formData = new FormData(this);
 
-formData.append("Signature",canvas.toDataURL());
-formData.append("Photo", document.querySelector('input[name="Photo"]'));
-formData.append("Report", document.querySelector('input[name="Report"]'));
+    formData.append("Signature", canvas.toDataURL());
 
-await fetch("https://goodshepherdhealth.app.n8n.cloud/webhook-test/html-file",{
+    const response = await fetch(
+        "https://goodshepherdhealth.app.n8n.cloud/webhook-test/html-file",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
 
-method:"POST",
+    if (!response.ok) {
+        alert("Submission failed");
+        return;
+    }
 
-body:formData
-
-});
-
-alert("Form Submitted Successfully.");
+    alert("Form Submitted Successfully.");
 
 });
 
