@@ -345,7 +345,7 @@ button{
 
 <h1>GSS Student Health Monitoring Form</h1>
 
-<form id="healthForm">
+<form id="healthForm" enctype="multipart/form-data">
 
 <h3>Community Health Worker</h3>
 
@@ -923,13 +923,13 @@ document.getElementById("healthForm").addEventListener("submit", async function(
     const formData = new FormData(this);
 
     formData.append("Signature", canvas.toDataURL());
+const photo = document.querySelector('input[name="Photo"]');
+
+console.log(photo.files);
+console.log(photo.files.length);
+
 for (const [key, value] of formData.entries()) {
-    console.log(
-        key,
-        value instanceof File
-            ? `${value.name} (${value.size} bytes)`
-            : value
-    );
+    console.log(key, value);
 }
     const response = await fetch(
         "https://goodshepherdhealth.app.n8n.cloud/webhook-test/html-file",
