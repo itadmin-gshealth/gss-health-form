@@ -924,6 +924,17 @@ let formData=new FormData(this);
 
 formData.append("Signature",canvas.toDataURL());
 
+const photoInput = document.querySelector('input[name="Photo"]');
+const reportInput = document.querySelector('input[name="Report"]');
+
+if (photoInput.files.length > 0) {
+    formData.set("Photo", photoInput.files[0]);
+}
+
+if (reportInput.files.length > 0) {
+    formData.set("Report", reportInput.files[0]);
+}
+
 await fetch("https://goodshepherdhealth.app.n8n.cloud/webhook-test/html-file",{
 
 method:"POST",
